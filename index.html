@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rupali Malviya | Portfolio</title>
+  <style>
+    /* ---------- Variables (custom properties) ---------- */
+    :root {
+      --sage: #3f5f52;
+      --sage-light: #eef3ee;
+      --cream: #fbf6ea;
+      --pink: #f3dcdf;
+      --pink-dark: #e8d3d6;
+      --lavender: #e4e0f0;
+      --lavender-dark: #c9c1de;
+      --text: #2b2f33;
+      --muted: #5c6660;
+    }
+
+    /* ---------- Universal and element selectors ---------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--sage);
+    }
+
+    a:focus {
+      outline: 2px solid var(--lavender-dark);
+      outline-offset: 2px;
+    }
+
+    /* ---------- Top bar: Flexbox + sticky positioning ---------- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: var(--sage);
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .logo {
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* descendant selector + pseudo-class */
+    .topbar nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .topbar nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- Hero: Flexbox ---------- */
+    .hero {
+      background-color: var(--pink-dark);
+      padding: 50px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .hero-text {
+      width: 800px;
+      max-width: 90%;
+    }
+
+    .tag {
+      font-size: 14px;
+      color: var(--sage);
+      margin-top: 0;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin: 5px 0;
+    }
+
+    .hero h2 {
+      font-size: 18px;
+      font-weight: normal;
+      margin: 0 0 10px 0;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: var(--sage);
+      color: white;
+      text-decoration: none;
+      padding: 9px 18px;
+      margin: 10px 8px 0 0;
+      border: 2px solid var(--sage);
+      border-radius: 6px;
+    }
+
+    .button:hover {
+      background-color: white;
+      color: var(--sage);
+    }
+
+    /* class chained with class */
+    .button.outline {
+      background-color: transparent;
+      color: var(--sage);
+    }
+
+    .button.outline:hover {
+      background-color: var(--sage);
+      color: white;
+    }
+
+    /* ---------- Main layout ---------- */
+    main {
+      width: 800px;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    /* child selector */
+    main > section {
+      padding: 30px 0 10px 0;
+    }
+
+    main h2 {
+      color: var(--sage);
+      font-size: 26px;
+      margin: 0 0 14px 0;
+    }
+
+    /* ---------- Cards: Flexbox wrap ---------- */
+    .card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .card {
+      flex: 1 1 320px;
+      position: relative;          /* lets the badge be positioned inside */
+      background-color: white;
+      border: 2px solid var(--sage);
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 var(--sage);
+      padding: 16px 20px;
+    }
+
+    /* ID + class selectors give each section its own colour */
+    #education .card {
+      background-color: var(--pink);
+    }
+
+    #experience .card {
+      background-color: var(--lavender);
+    }
+
+    #projects .card {
+      background-color: white;
+    }
+
+    #skills .card {
+      background-color: var(--sage-light);
+    }
+
+    /* pseudo-class: every second project gets a lavender tint */
+    #projects .card:nth-child(even) {
+      background-color: #f6f3fb;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      margin: 0 0 4px 0;
+    }
+
+    .card p {
+      margin: 6px 0;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ---------- Project cards: absolute positioning ---------- */
+    .project {
+      padding-top: 38px;
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background-color: var(--lavender-dark);
+      color: var(--sage);
+      border: 2px solid var(--sage);
+      border-radius: 20px;
+      padding: 2px 12px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .note {
+      background-color: var(--pink);
+      border-left: 4px solid var(--sage);
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    /* attribute selector */
+    a[target="_blank"]::after {
+      content: " \2197";
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 30px 10px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 600px) {
+      .topbar {
+        justify-content: center;
+        padding: 10px 15px;
+      }
+
+      .hero {
+        padding: 35px 20px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .card {
+        flex-basis: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="logo">RUPALI.</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="tag">Commerce Undergraduate | Public Relations | Communication &amp; Research</p>
+      <h1>Rupali Malviya.</h1>
+      <h2>B.Com (Honours) and BBA in Digital Business and Entrepreneurship</h2>
+      <p>Student at Shivaji College, University of Delhi and IIM Bangalore, interested in business, communication, research and social impact.</p>
+      <a class="button" href="#contact">Contact Me</a>
+      <a class="button outline" href="#about">Explore My Profile</a>
+    </div>
+  </section>
+
+  <main>
+
+    <section id="about">
+      <h2>About Me.</h2>
+      <p>I am an undergraduate commerce student pursuing B.Com (Honours) at Shivaji College, University of Delhi, along with the BBA in Digital Business and Entrepreneurship programme at IIM Bangalore.</p>
+      <p>I enjoy exploring new perspectives, expressing ideas and working with people. Through campus involvement, public speaking and academic activities, I am building my skills in communication, teamwork, research and organisational work.</p>
+    </section>
+
+    <section id="education">
+      <h2>My Education.</h2>
+      <div class="card-list">
+        <div class="card">
+          <h3>Shivaji College, University of Delhi</h3>
+          <p class="small">Currently pursuing</p>
+          <p>Bachelor of Commerce (Honours)</p>
+        </div>
+        <div class="card">
+          <h3>Indian Institute of Management Bangalore</h3>
+          <p class="small">Currently pursuing</p>
+          <p>BBA in Digital Business and Entrepreneurship</p>
+        </div>
+        <div class="card">
+          <h3>Carmel Convent Senior Secondary School, Bhopal</h3>
+          <p class="small">Class XII: 84% | Class X: 89.6%</p>
+          <p>Senior Secondary Education</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience.</h2>
+      <div class="card-list">
+        <div class="card">
+          <h3>Enactus, Shivaji College (Project SaNa)</h3>
+          <p class="small">Team Member</p>
+          <p>Part of a social-impact project that works to improve access to menstrual hygiene products and sexual education for women from marginalised communities.</p>
+        </div>
+        <div class="card">
+          <h3>Anchorage, Cultural Committee</h3>
+          <p class="small">Public Relations Team Member</p>
+          <p>Supporting communication and outreach, and helping coordinate events and campus cultural initiatives.</p>
+        </div>
+        <div class="card">
+          <h3>School Anchoring and Oratory</h3>
+          <p class="small">Anchor | Speech Writing | Public Speaking</p>
+          <p>Anchored formal school events and took part in speech-writing and public-speaking competitions.</p>
+        </div>
+        <div class="card">
+          <h3>School Case Competitions</h3>
+          <p class="small">Participant</p>
+          <p>Gained exposure to analytical thinking, group problem-solving and presenting ideas. One of these was EmoTech, described under <a href="#projects">Projects</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects.</h2>
+      <div class="card-list">
+
+        <div class="card project">
+          <span class="badge">School case competition</span>
+          <h3>EmoTech: Assistive Technology App Concept</h3>
+          <p class="small">Team project | Research and presentation</p>
+          <p>I worked with a team to develop a conceptual app idea that aims to help autistic children improve their sensory abilities and other developmental skills.</p>
+          <p>My contribution was researching autism and presenting our concept and research findings to a jury.</p>
+          <p class="note">Note: EmoTech was developed as a concept for a school case competition. It is not a launched application.</p>
+        </div>
+
+        <div class="card project">
+          <span class="badge">Business Studies research project</span>
+          <h3>Icy Infusion: Iced Tea Brand Concept</h3>
+          <p class="small">Academic project | Branding and product development</p>
+          <p>I conceptualised Icy Infusion, an iced tea brand, as part of my Business Studies research project. It is an example of my academic exploration of branding, product development and business concepts.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>My Skills.</h2>
+      <div class="card-list">
+        <div class="card">
+          <h3>Communication</h3>
+          <p>Public speaking, speech writing, verbal and written communication</p>
+        </div>
+        <div class="card">
+          <h3>Research</h3>
+          <p>Information gathering, academic research, analytical thinking</p>
+        </div>
+        <div class="card">
+          <h3>Collaboration</h3>
+          <p>Teamwork, creative thinking, coordination</p>
+        </div>
+        <div class="card">
+          <h3>Digital</h3>
+          <p>Canva (basic), presentation and documentation</p>
+        </div>
+        <div class="card">
+          <h3>Campus Engagement</h3>
+          <p>Public relations, outreach, event support</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <h2>Interests.</h2>
+      <p><b>Areas of interest:</b> Business and Management, Corporate Communications, Public Relations, Research and Analysis, Marketing and Brand Communication, Social Impact Initiatives</p>
+      <p><b>Outside of studies:</b> Literature, Cinema, Creative Writing, Journaling, Exploring New Ideas</p>
+    </section>
+
+    <section id="contact">
+      <h2>Let's Connect.</h2>
+      <p>I am open to opportunities that offer practical exposure, meaningful collaboration and the chance to contribute to communication, research and organisational initiatives.</p>
+      <p>Email: <a href="mailto:rupalim26@iimb.ac.in">rupalim26@iimb.ac.in</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/rupali-malviya-a47456288" target="_blank" rel="noopener">linkedin.com/in/rupali-malviya-a47456288</a></p>
+      <p>Location: Delhi, India</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Rupali Malviya</p>
+  </footer>
+
+</body>
+</html>
